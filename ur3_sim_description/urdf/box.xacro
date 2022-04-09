@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="box" >
+    <link name="box_bottom">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/box/ERC2022_box_bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/box/ERC2022_box_bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="10" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </link>
+
+    <joint name="box_bottom_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="box_bottom"/>
+      <origin xyz="0.3816 -0.29 0.17" rpy="0.0 0.0 -1.8849555922"/>
+    </joint>
+
+    <link name="box_top">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/box/ERC2022_box_top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/box/ERC2022_box_top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="10" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </link>
+
+    <joint name="box_top_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="box_top"/>
+      <origin xyz="0.3816 -0.29 0.17" rpy="0.0 0.0 -1.8849555922"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

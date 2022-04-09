@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_white-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">1 1 1 1</color>
+            </diffuse>
+            <ambient>
+              <color sid="ambient">1 1 1 1</color>
+            </ambient>
+            <specular>
+              <color sid="specular">0.1 0.1 0.1 128</color>
+            </specular>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Material_grey-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.2467019 0.2467019 0.2467019 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Material_011-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0 0 0 1</color>
+            </diffuse>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <specular>
+              <color sid="specular">0.1 0.1 0.1 1 5</color>
+            </specular>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="Material_white-material" name="Material.white">
+      <instance_effect url="#Material_white-effect"/>
+    </material>
+    <material id="Material_grey-material" name="Material.010">
+      <instance_effect url="#Material_grey-effect"/>
+    </material>
+    <material id="Material_011-material" name="Material.011">
+      <instance_effect url="#Material_011-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="ERC2022_IMU_dummy_white_002-mesh" name="ERC2022_IMU_dummy_white.002">
+      <mesh>
+        <source id="ERC2022_IMU_dummy_white_002-mesh-positions">
+          <float_array id="ERC2022_IMU_dummy_white_002-mesh-positions-array" count="60">-50 23 48.8 -50 -23 48.8 -50 23 49.8 -50 -23 49.8 -48 25 48.8 -48 25 49.8 48 25 48.8 48 25 49.8 50 23 49.8 48 23 51.8 50 23 48.8 -48 23 51.8 -48 -25 48.8 -48 -25 49.8 48 -25 48.8 48 -25 49.8 50 -23 48.8 50 -23 49.8 48 -23 51.8 -48 -23 51.8</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_white_002-mesh-positions-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ERC2022_IMU_dummy_white_002-mesh-normals">
+          <float_array id="ERC2022_IMU_dummy_white_002-mesh-normals-array" count="69">-1 0 0 -0.7071081 0.7071055 0 -0.7071068 0.7071068 0 0 1 0 0.5773514 0.5773492 0.5773503 0.7071068 0.7071068 0 0.7071081 0.7071055 0 -0.5773514 0.5773492 0.5773503 0 0.7071068 0.7071068 -0.7071068 -0.7071068 0 -0.7071081 -0.7071055 0 0 -1 0 0.7071081 -0.7071055 0 0.7071068 -0.7071068 0 0.5773514 -0.5773492 0.5773503 -0.5773514 -0.5773492 0.5773503 0 -0.7071059 0.7071077 0 -0.7071068 0.7071068 -0.7071075 0 0.7071062 1 0 0 0 0 -1 0.7071075 0 0.7071062 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_white_002-mesh-normals-array" count="23" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ERC2022_IMU_dummy_white_002-mesh-vertices">
+          <input semantic="POSITION" source="#ERC2022_IMU_dummy_white_002-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_white-material" count="36">
+          <input semantic="VERTEX" source="#ERC2022_IMU_dummy_white_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#ERC2022_IMU_dummy_white_002-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 0 1 5 1 5 2 0 2 2 2 4 3 5 3 6 3 6 3 5 3 7 3 8 4 7 4 9 4 10 5 6 5 8 5 8 6 6 6 7 6 2 7 11 7 5 7 7 8 5 8 9 8 9 8 5 8 11 8 1 9 12 9 3 9 3 10 12 10 13 10 14 11 15 11 12 11 12 11 15 11 13 11 14 12 16 12 15 12 15 13 16 13 17 13 17 14 18 14 15 14 3 15 13 15 19 15 18 16 19 16 15 16 15 17 19 17 13 17 2 18 3 18 11 18 11 18 3 18 19 18 16 19 10 19 17 19 17 19 10 19 8 19 6 20 10 20 4 20 4 20 10 20 0 20 0 20 10 20 16 20 0 20 16 20 1 20 1 20 16 20 12 20 12 20 16 20 14 20 17 21 8 21 18 21 18 21 8 21 9 21 18 22 9 22 19 22 19 22 9 22 11 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="ERC2022_IMU_dummy_grey_002-mesh" name="ERC2022_IMU_dummy_grey.002">
+      <mesh>
+        <source id="ERC2022_IMU_dummy_grey_002-mesh-positions">
+          <float_array id="ERC2022_IMU_dummy_grey_002-mesh-positions-array" count="60">48 25 48.8 -48 25 48.8 50 23 48.8 -50 23 48.8 -50 -23 48.8 50 -23 48.8 -48 -25 48.8 48 -25 48.8 -48 -25 3.799999 -50 -23 3.799999 -50 23 3.800001 -48 25 3.800001 48 25 3.800001 50 23 3.800001 48 23 1.800001 -48 23 1.800001 50 -23 3.799999 48 -25 3.799999 48 -23 1.799999 -48 -23 1.799999</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_grey_002-mesh-positions-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ERC2022_IMU_dummy_grey_002-mesh-normals">
+          <float_array id="ERC2022_IMU_dummy_grey_002-mesh-normals-array" count="78">0 0 1 -0.7071087 -0.7071049 0 -0.7071068 -0.7071068 0 -1 0 0 -0.7071068 0.7071068 0 -0.7071087 0.7071049 0 0 1 0 0 1 0 0.5773514 0.5773492 -0.5773503 -0.5773514 0.5773492 -0.5773503 0 0.7071069 -0.7071067 0.5773514 -0.5773492 -0.5773503 -0.5773514 -0.5773492 -0.5773503 0 -0.7071068 -0.7071068 0.7071068 -0.7071067 0 0.7071087 -0.7071049 0 -0.7071075 0 -0.7071062 -0.7071076 0 -0.7071061 0.7071075 0 -0.7071062 0.7071076 0 -0.7071061 0.7071088 0.7071049 0 0.7071068 0.7071068 0 0 0 -1 0 -1 0 0 -1 0 1 0 0</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_grey_002-mesh-normals-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ERC2022_IMU_dummy_grey_002-mesh-vertices">
+          <input semantic="POSITION" source="#ERC2022_IMU_dummy_grey_002-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_grey-material" count="36">
+          <input semantic="VERTEX" source="#ERC2022_IMU_dummy_grey_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#ERC2022_IMU_dummy_grey_002-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 2 0 3 0 4 0 2 0 4 0 5 0 5 0 4 0 6 0 5 0 6 0 7 0 6 1 4 1 8 1 8 2 4 2 9 2 4 3 3 3 9 3 9 3 3 3 10 3 3 4 1 4 10 4 10 5 1 5 11 5 0 6 12 6 1 6 1 7 12 7 11 7 13 8 14 8 12 8 10 9 11 9 15 9 11 10 12 10 15 10 15 10 12 10 14 10 16 11 17 11 18 11 9 12 19 12 8 12 17 13 8 13 18 13 18 13 8 13 19 13 5 14 7 14 16 14 16 15 7 15 17 15 9 16 10 16 19 16 19 17 10 17 15 17 13 18 16 18 14 18 14 19 16 19 18 19 0 20 2 20 12 20 12 21 2 21 13 21 19 22 15 22 18 22 18 22 15 22 14 22 6 23 8 23 7 23 7 24 8 24 17 24 2 25 5 25 13 25 13 25 5 25 16 25</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="ERC2022_IMU_dummy_black_002-mesh" name="ERC2022_IMU_dummy_black.002">
+      <mesh>
+        <source id="ERC2022_IMU_dummy_black_002-mesh-positions">
+          <float_array id="ERC2022_IMU_dummy_black_002-mesh-positions-array" count="114">-48 23 1.00536e-6 -48 -23 -1.00536e-6 -48 23 1.800001 -48 -23 1.799999 48 23 1.00536e-6 48 23 1.800001 48 -23 -1.00536e-6 48 -23 1.799999 8.57143 -14.28572 51.8 8.57143 -2.857145 51.8 8.57143 -14.28572 52.2 8.57143 -2.857145 52.2 14.28571 -14.28572 51.8 14.28571 -14.28572 52.2 14.28571 -2.857145 51.8 14.28571 -2.857145 52.2 -14.28571 14.28571 51.8 -8.57143 14.28571 51.8 -14.28571 14.28571 52.2 -8.57143 14.28571 52.2 -14.28571 -2.857145 51.8 -14.28571 -2.857145 52.2 -8.57143 -2.857145 51.8 -8.57143 -2.857145 52.2 -8.57143 -14.28572 51.8 -8.57143 -14.28572 52.2 -2.857143 -14.28572 51.8 -2.857143 -14.28572 52.2 -2.857143 -2.857145 51.8 -2.857143 -2.857145 52.2 -20 20 51.8 -20 -20 51.8 -20 20 52.2 -20 -20 52.2 20 20 51.8 20 20 52.2 20 -20 51.8 20 -20 52.2</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_black_002-mesh-positions-array" count="38" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="ERC2022_IMU_dummy_black_002-mesh-normals">
+          <float_array id="ERC2022_IMU_dummy_black_002-mesh-normals-array" count="57">-1 -1.84285e-7 0 -1 0 0 0 1 0 1 -1.84285e-7 0 1 0 0 0 -1 0 0 0 1 0 0 -1 0 -1 -1.66892e-6 0 1 1.66892e-6 0 0 1 -7.4768e-7 0 1 5.34058e-7 0 1 1.8692e-6 0 1 -2.07689e-7 0 1 -1.06812e-6 0 1 1.24613e-6 0 1 0 0 -1 -5.34058e-7 0 -1</float_array>
+          <technique_common>
+            <accessor source="#ERC2022_IMU_dummy_black_002-mesh-normals-array" count="19" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="ERC2022_IMU_dummy_black_002-mesh-vertices">
+          <input semantic="POSITION" source="#ERC2022_IMU_dummy_black_002-mesh-positions"/>
+        </vertices>
+        <triangles material="Material_011-material" count="80">
+          <input semantic="VERTEX" source="#ERC2022_IMU_dummy_black_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#ERC2022_IMU_dummy_black_002-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 1 1 1 3 1 4 2 0 2 5 2 5 2 0 2 2 2 6 3 4 3 7 3 7 4 4 4 5 4 1 5 6 5 3 5 3 5 6 5 7 5 7 6 5 6 3 6 3 6 5 6 2 6 1 7 0 7 6 7 6 7 0 7 4 7 8 4 9 4 10 4 10 4 9 4 11 4 12 2 8 2 13 2 13 2 8 2 10 2 14 1 12 1 15 1 15 1 12 1 13 1 9 8 14 8 11 8 11 5 14 5 15 5 16 5 17 5 18 5 18 5 17 5 19 5 20 4 16 4 21 4 21 4 16 4 18 4 22 9 20 9 23 9 23 2 20 2 21 2 24 4 22 4 25 4 25 4 22 4 23 4 26 2 24 2 27 2 27 2 24 2 25 2 28 1 26 1 29 1 29 1 26 1 27 1 22 5 28 5 23 5 23 5 28 5 29 5 17 1 22 1 19 1 19 1 22 1 23 1 30 1 31 1 32 1 32 1 31 1 33 1 34 2 30 2 35 2 35 2 30 2 32 2 36 4 34 4 37 4 37 4 34 4 35 4 31 5 36 5 33 5 33 5 36 5 37 5 37 10 27 10 33 10 33 10 27 10 25 10 33 11 25 11 21 11 21 10 25 10 23 10 35 12 15 12 37 12 37 13 15 13 13 13 37 10 13 10 10 10 32 10 19 10 35 10 35 14 19 14 11 14 35 10 11 10 15 10 33 15 21 15 32 15 32 16 21 16 18 16 32 10 18 10 19 10 23 10 29 10 19 10 19 10 29 10 11 10 29 10 27 10 11 10 11 10 27 10 10 10 10 10 27 10 37 10 31 17 26 17 36 17 36 17 26 17 8 17 36 17 8 17 12 17 30 18 20 18 31 18 31 17 20 17 24 17 31 17 24 17 26 17 34 17 17 17 30 17 30 17 17 17 16 17 30 17 16 17 20 17 36 17 14 17 34 17 34 17 14 17 9 17 34 17 9 17 17 17 17 17 9 17 28 17 17 17 28 17 22 17 20 17 22 17 24 17 26 17 28 17 8 17 8 17 28 17 9 17 12 17 14 17 36 17</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="ERC2022_IMU_dummy_white" name="ERC2022_IMU_dummy_white" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#ERC2022_IMU_dummy_white_002-mesh" name="ERC2022_IMU_dummy_white">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_white-material" target="#Material_white-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="ERC2022_IMU_dummy_grey" name="ERC2022_IMU_dummy_grey" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#ERC2022_IMU_dummy_grey_002-mesh" name="ERC2022_IMU_dummy_grey">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_grey-material" target="#Material_grey-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="ERC2022_IMU_dummy_black" name="ERC2022_IMU_dummy_black" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#ERC2022_IMU_dummy_black_002-mesh" name="ERC2022_IMU_dummy_black">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_011-material" target="#Material_011-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

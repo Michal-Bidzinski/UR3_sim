@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro"
+       name="ur3" >
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+  <!-- ur3 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur3.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur3_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <link name="tool_gripper" />
+
+  <joint name="tool_gripper_joint" type="fixed">
+    <parent link="tool0" />
+    <child link = "tool_gripper" />
+    <origin xyz="0.0 0.0 0.12084" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/cell.xacro" />
+  <xacro:cell />
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/box.xacro" />
+  <xacro:box />
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/imu.xacro" />
+  <xacro:imu />
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/button.xacro" />
+  <xacro:button />
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/gripper.xacro" />
+  <xacro:gripper />
+
+
+  <xacro:include filename="$(find ur3_sim_description)/urdf/camera.urdf.xacro" />
+  <xacro:camera_mount prefix="camera" topic="camera_image" parent_link="camera_link"/>
+
+
+</robot>

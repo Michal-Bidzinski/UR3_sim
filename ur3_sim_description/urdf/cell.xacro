@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="cell">
+    <link name="cela_white">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/cell/ERC2022_cela_white.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/cell/ERC2022_cela_white.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="10" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </link>
+
+    <joint name="cela_white_joint" type="fixed">
+      <parent link="world"/>
+      <child link="cela_white"/>
+      <origin xyz="-0.04 0.0 -0.14" rpy="0.0 0 -1.57079632679"/>
+    </joint>
+
+    <gazebo reference="cela_white">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <link name="cela_black">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/cell/ERC2022_cela_black.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/cell/ERC2022_cela_black.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="10" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </link>
+
+    <joint name="cela_black_joint" type="fixed">
+      <parent link="world"/>
+      <child link="cela_black"/>
+      <origin xyz="-0.04 0.0 -0.14" rpy="0.0 0 -1.57079632679"/>
+    </joint>
+
+    <gazebo reference="cela_black">
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

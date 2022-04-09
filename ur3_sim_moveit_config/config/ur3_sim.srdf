@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<robot name="ur3">
+    <group name="manipulator">
+        <chain base_link="base_link" tip_link="tool_gripper" />
+    </group>
+
+    <group name="gripper">
+        <joint name="left_gear_joint" />
+        <joint name="right_gear_joint" />
+        <joint name="right_arm_bottom_joint" />
+        <joint name="left_arm_bottom_joint" />
+        <joint name="right_arm_top_joint" />
+        <joint name="left_arm_top_joint" />
+        <joint name="left_stick_joint" />
+        <joint name="right_stick_joint" />
+        <joint name="left_stick_top_joint" />
+        <joint name="right_stick_top_joint" />
+    </group>
+
+    <group_state name="home" group="manipulator">
+        <joint name="elbow_joint" value="0" />
+        <joint name="shoulder_lift_joint" value="0" />
+        <joint name="shoulder_pan_joint" value="0" />
+        <joint name="wrist_1_joint" value="0" />
+        <joint name="wrist_2_joint" value="0" />
+        <joint name="wrist_3_joint" value="0" />
+    </group_state>
+    <group_state name="up" group="manipulator">
+        <joint name="elbow_joint" value="0" />
+        <joint name="shoulder_lift_joint" value="-1.5707" />
+        <joint name="shoulder_pan_joint" value="0" />
+        <joint name="wrist_1_joint" value="-1.5707" />
+        <joint name="wrist_2_joint" value="0" />
+        <joint name="wrist_3_joint" value="0" />
+    </group_state>
+
+    <virtual_joint name="fixed_base" type="fixed" parent_frame="world" child_link="base_link" />
+
+    <disable_collisions link1="base_link" link2="shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="ee_link" link2="wrist_1_link" reason="Never" />
+    <disable_collisions link1="ee_link" link2="wrist_2_link" reason="Never" />
+    <disable_collisions link1="ee_link" link2="wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="forearm_link" link2="upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="forearm_link" link2="wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="forearm_link" link2="wrist_2_link" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="shoulder_link" link2="wrist_1_link" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wrist_2_link" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="wrist_1_link" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="wrist_2_link" link2="wrist_3_link" reason="Adjacent" />
+
+    <!--disable_collisions link1="base_bottom" link2="wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="left_gear" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="right_gear" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="left_stick" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="right_stick" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="left_stick_top" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="right_stick_top" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="spacer" reason="Adjacent" />
+    <disable_collisions link1="base_bottom" link2="base_top" reason="Adjacent" />
+
+    <disable_collisions link1="base_bottom" link2="wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="base_top" link2="left_gear" reason="Adjacent" />
+    <disable_collisions link1="base_top" link2="right_gear" reason="Adjacent" />
+    <disable_collisions link1="base_top" link2="left_stick_top" reason="Adjacent" />
+    <disable_collisions link1="base_top" link2="right_stick_top" reason="Adjacent" />
+    <disable_collisions link1="base_top" link2="spacer" reason="Adjacent" />
+
+    <disable_collisions link1="spacer" link2="left_stick" reason="Adjacent" />
+    <disable_collisions link1="spacer" link2="right_stick" reason="Adjacent" />
+    <disable_collisions link1="spacer" link2="left_stick_top" reason="Adjacent" />
+    <disable_collisions link1="spacer" link2="right_stick_top" reason="Adjacent" />
+
+    <disable_collisions link1="right_arm_bottom" link2="right_gear" reason="Adjacent" />
+    <disable_collisions link1="right_arm_bottom" link2="right_stick" reason="Adjacent" />
+    <disable_collisions link1="right_arm_bottom" link2="right_stick_top" reason="Adjacent" />
+    <disable_collisions link1="right_arm_bottom" link2="right_finger" reason="Adjacent" />
+
+    <disable_collisions link1="left_arm_bottom" link2="left_gear" reason="Adjacent" />
+    <disable_collisions link1="left_arm_bottom" link2="left_stick" reason="Adjacent" />
+    <disable_collisions link1="left_arm_bottom" link2="left_stick_top" reason="Adjacent" />
+    <disable_collisions link1="left_arm_bottom" link2="left_finger" reason="Adjacent" /-->
+
+    <disable_collisions link1="base_bottom" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="right_gear" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="right_gear" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_gear" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_gear" link2="right_gear" reason="Never"/>
+
+    <disable_collisions link1="right_stick" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_stick" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="right_stick_top" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_stick_top" link2="base_bottom" reason="Never"/>
+
+    <disable_collisions link1="spacer" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="spacer" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="spacer" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="spacer" link2="right_stick_top" reason="Never"/>
+    <disable_collisions link1="spacer" link2="left_stick_top" reason="Never"/>
+
+    <disable_collisions link1="left_arm_bottom" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="spacer" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="left_gear" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="left_arm_bottom" link2="left_stick_top" reason="Never"/>
+
+    <disable_collisions link1="left_arm_top" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="spacer" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_gear" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_finger" reason="Never"/>
+    <disable_collisions link1="left_arm_top" link2="left_arm_bottom" reason="Never"/>
+
+    <disable_collisions link1="right_arm_top" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="spacer" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_gear" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_stick_top" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_stick_top" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_finger" reason="Never"/>
+    <disable_collisions link1="right_arm_top" link2="right_arm_bottom" reason="Never"/>
+
+    <disable_collisions link1="right_arm_bottom" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="spacer" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="right_gear" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="right_arm_bottom" link2="left_stick_top" reason="Never"/>
+
+    <disable_collisions link1="spacer" link2="wrist_3_link" reason="Never"/>
+    <disable_collisions link1="spacer" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="spacer" link2="right_gear" reason="Never"/>
+    <disable_collisions link1="spacer" link2="left_gear" reason="Never"/>
+    <disable_collisions link1="spacer" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="spacer" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="spacer" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="spacer" link2="right_stick_top" reason="Never"/>
+
+    <disable_collisions link1="base_top" link2="wrist_3_link" reason="Never"/>
+    <disable_collisions link1="base_top" link2="base_bottom" reason="Never"/>
+    <disable_collisions link1="base_top" link2="right_gear" reason="Never"/>
+    <disable_collisions link1="base_top" link2="left_gear" reason="Never"/>
+    <disable_collisions link1="base_top" link2="left_stick" reason="Never"/>
+    <disable_collisions link1="base_top" link2="right_stick" reason="Never"/>
+    <disable_collisions link1="base_top" link2="left_stick_top" reason="Never"/>
+    <disable_collisions link1="base_top" link2="right_stick_top" reason="Never"/>
+    <disable_collisions link1="base_top" link2="spacer" reason="Never"/>
+
+    <disable_collisions link1="adapter" link2="wrist_3_link" reason="Never"/>
+    <disable_collisions link1="adapter" link2="base_top" reason="Never"/>
+    <disable_collisions link1="adapter" link2="base_bottom" reason="Never"/>
+
+
+</robot>

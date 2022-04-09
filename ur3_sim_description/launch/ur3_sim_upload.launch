@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ur3_sim_description)/urdf/ur3_sim.urdf.xacro' transmission_hw_interface:=$(arg transmission_hw_interface)" />
+</launch>

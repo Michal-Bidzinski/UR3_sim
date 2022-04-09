@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="gripper_transmission" >
+    <transmission name="left_gear_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_gear_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_gear_joint_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+	    <gazebo>
+             <!-- loading plugin: mimic joints works in gazebo now-->
+             <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>right_gear_joint</mimicJoint>
+                <multiplier>1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>right_arm_bottom_joint</mimicJoint>
+                <multiplier>-1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>left_arm_bottom_joint</mimicJoint>
+                <multiplier>1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>right_arm_top_joint</mimicJoint>
+                <multiplier>-1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>left_arm_top_joint</mimicJoint>
+                <multiplier>1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>left_stick_joint</mimicJoint>
+                <multiplier>-1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>right_stick_joint</mimicJoint>
+                <multiplier>1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>left_stick_top_joint</mimicJoint>
+                <multiplier>-1.0</multiplier>
+            </plugin>
+            <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="mimic_joint">
+                <joint>left_gear_joint</joint>
+                <mimicJoint>right_stick_top_joint</mimicJoint>
+                <multiplier>1.0</multiplier>
+            </plugin>
+        </gazebo>
+  </xacro:macro>
+</robot>

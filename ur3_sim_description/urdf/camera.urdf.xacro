@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="camera_mount" params="prefix topic parent_link">
+
+    <xacro:macro name="camera">
+
+      <link name="camera_link" />
+      <joint name="camera_link_joint" type="fixed">
+        <parent link="camera_pose"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0 0" rpy="-${pi/2} 0 -${pi/2} " />
+      </joint>
+
+      <gazebo reference="camera_pose">
+        <turnGravityOff>true</turnGravityOff>
+          <sensor type="camera" name="camera1">
+          <update_rate>30</update_rate>
+          <camera>
+            <horizontal_fov>1.2112585009</horizontal_fov>
+            <vertical_fov>0.7417649321</vertical_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>RGB8</format>
+            </image>
+            <clip>
+              <near>0.01</near>
+              <far>50.0</far>
+            </clip>
+          </camera>
+          <plugin name="kinect_controller" filename="libgazebo_ros_camera.so">
+            <baseline>0.2</baseline>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30</updateRate>
+            <cameraName>camera_image</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <distortionK1>0.00000001</distortionK1>
+            <distortionK2>0.00000001</distortionK2>
+            <distortionK3>0.00000001</distortionK3>
+            <distortionT1>0.00000001</distortionT1>
+            <distortionT2>0.00000001</distortionT2>
+            <CxPrime>0</CxPrime>
+            <Cx>0</Cx>
+            <Cy>0</Cy>
+            <focalLength>0</focalLength>
+            <hackBaseline>0</hackBaseline>
+          </plugin>
+        </sensor>
+      </gazebo>
+    </xacro:macro>
+
+    <link name="camera_mount"/>
+
+    <joint name="camera_mount_joint" type="fixed">
+    <origin xyz="0.02217 0.00015 0.0739" rpy="1.308996939 0 0"/>
+      <parent link="base_bottom" />
+      <child link="camera_mount" />
+    </joint>
+
+    <link name="camera_pose" />
+    <joint type="fixed" name="camera_pose_joint">
+      <origin xyz="0 0 0" rpy="-${pi/2} ${pi/2} 0" />
+      <parent link="camera_mount" />
+      <child link="camera_pose" />
+    </joint>
+
+    <xacro:camera/>
+  </xacro:macro>
+</robot>

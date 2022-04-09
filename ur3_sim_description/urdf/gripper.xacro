@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="gripper">
+    <xacro:include filename="gripper_transmission.xacro" />
+    <xacro:gripper_transmission />
+
+    <xacro:macro name="default_inertial" params="mass">
+      <inertial>
+        <mass value="${mass}" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      </inertial>
+    </xacro:macro>
+
+    <xacro:property name="d_f" value="0.001" />  <!-- dimension factor -->
+    <xacro:property name="i_f" value="10E-12" />  <!-- inertia factor -->
+
+    <link name="base_bottom">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/BaseBottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/BaseBottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="0.022834885 -0.035958401 0.002623114" rpy="0 0 0" />
+        <inertia ixx="0.00198528736" ixy="-0.00000264564125000" ixz="-0.00000829723937500"
+                 iyx="-0.00000264564125000" iyy="0.00093770280000000" iyz="0.00025834140000000"
+                 izx="-0.00000829723937500" izy="0.00025834140000000" izz="0.00252391792000000" />
+      </inertial>
+    </link>
+
+    <gazebo reference="base_bottom">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <link name="adapter">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Adapter.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Adapter.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="0.022834885 -0.035958401 0.002623114" rpy="0 0 0" />
+        <inertia ixx="0.00198528736" ixy="-0.00000264564125000" ixz="-0.00000829723937500"
+                 iyx="-0.00000264564125000" iyy="0.00093770280000000" iyz="0.00025834140000000"
+                 izx="-0.00000829723937500" izy="0.00025834140000000" izz="0.00252391792000000" />
+      </inertial>
+    </link>
+
+    <gazebo reference="adapter">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="adapter_joint" type="fixed">
+      <parent link="base_bottom"/>
+      <child link="adapter"/>
+      <origin xyz="0.0 0 0.0"/>
+    </joint>
+
+    <link name="left_gear">
+      <visual>
+        <origin xyz="0.0 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/MainGear2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/MainGear2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${-4.189223*d_f} ${-0.000065*d_f} ${9.676432*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${4877482*i_f}" ixy="${-34.191254*i_f}" ixz="${-416507.031250*i_f}"
+                 iyx="${-34.191254*i_f}" iyy="${9591457.000000*i_f}" iyz="${505.108643*i_f}"
+                 izx="${-416507.031250*i_f}" izy="${505.108643*i_f}" izz="${505.108643*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="left_gear">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="left_gear_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="left_gear"/>
+      <axis xyz="0 0 -1"/>
+      <origin xyz="0.0 0 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+    </joint>
+
+    <link name="right_gear">
+      <visual>
+        <origin xyz="-0.044341 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/MainGear1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.044341 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/MainGear1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${48.526249*d_f} ${-0.000146*d_f} ${9.676307*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${4884460.0*i_f}" ixy="${85.138191*i_f}" ixz="${416369.593750*i_f}"
+                 iyx="${85.138191*i_f}" iyy="${9598416.0*i_f}" iyz="${-522.168335*i_f}"
+                 izx="${416369.593750*i_f}" izy="${416369.593750*i_f}" izz="${12235935.0*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="right_gear">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_gear_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="right_gear"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.044341 0 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="1" offset="0" />
+    </joint>
+
+    <link name="right_arm_bottom">
+      <visual>
+        <origin xyz="-0.094414 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_R_Bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.094414 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_R_Bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+          <mass value="0.0001"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="right_arm_bottom">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_arm_bottom_joint" type="revolute">
+      <joint_properties damping="1000.0" friction="1000.0"/>
+      <parent link="right_gear"/>
+      <child link="right_arm_bottom"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.050137 0 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
+    </joint>
+
+    <link name="left_arm_bottom">
+      <visual>
+        <origin xyz="0.050137 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_L_Bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.050137 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_L_Bottom.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+          <mass value="0.0001"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="left_arm_bottom">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="left_arm_bottom_joint" type="revolute">
+      <joint_properties damping="1000.0" friction="1000.0"/>
+      <parent link="left_gear"/>
+      <child link="left_arm_bottom"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="-0.050137 0 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="1" offset="0" />
+    </joint>
+
+    <link name="right_arm_top">
+      <visual>
+        <origin xyz="0.060137 0 0.027123" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_R_Top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.060137  0 0.027123" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_R_Top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+          <mass value="0.0001"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="right_arm_top">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_arm_top_joint" type="revolute">
+      <parent link="right_gear"/>
+      <child link="right_arm_top"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.050137  0 0.0"/>
+     <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
+    </joint>
+
+    <link name="left_arm_top">
+      <visual>
+        <origin xyz="0.050137 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_L_Top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.050137 0 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Arm_L_Top.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+          <mass value="0.0001"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="left_arm_top">
+        <material>Gazebo/DarkGrey</material>
+          <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="left_arm_top_joint" type="revolute">
+      <parent link="left_gear"/>
+      <child link="left_arm_top"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="-0.050137 0 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="1" offset="0" />
+    </joint>
+
+    <link name="left_finger">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Sock1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Sock1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.0000002265" />
+        <origin xyz="${-25.071934*d_f} ${69.012680*d_f} ${8.750031*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${5333414.500000*i_f}" ixy="${21136.375000*i_f}" ixz="${30.323486*i_f}"
+                 iyx="${21136.375000*i_f}" iyy="${4080434.750000*i_f}" iyz="${32.196716*i_f}"
+                 izx="${30.323486*i_f}" izy="${32.196716*i_f}" izz="${2611547.250000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="left_finger">
+        <material>Gazebo/DarkYellow</material>
+          <gravity>0</gravity>
+          <turnGravityOff>true</turnGravityOff>
+
+    </gazebo>
+
+    <joint name="left_finger_joint" type="fixed">
+      <parent link="left_arm_bottom"/>
+      <child link="left_finger"/>
+      <origin xyz="0.050137  0 0.0"/>
+    </joint>
+
+    <link name="right_finger">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Sock2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Sock2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.0000002265" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${5333414.500000*i_f}" ixy="${21136.375000*i_f}" ixz="${30.323486*i_f}"
+                 iyx="${21136.375000*i_f}" iyy="${4080434.750000*i_f}" iyz="${32.196716*i_f}"
+                 izx="${30.323486*i_f}" izy="${32.196716*i_f}" izz="${2611547.250000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="right_finger">
+        <material>Gazebo/DarkYellow</material>
+          <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_finger_joint" type="fixed">
+      <parent link="right_arm_bottom"/>
+      <child link="right_finger"/>
+      <origin xyz="-0.094414  0 0"/>
+    </joint>
+
+    <link name="left_stick">
+      <visual>
+        <origin xyz="-0.01 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.01 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${-15.003726*d_f + 0.01} ${33.000000*d_f - 0.033} ${5.024187*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${92893.898438*i_f}" ixy="${0.048491*i_f}" ixz="${107.669724*i_f}"
+                 iyx="${0.048491*i_f}" iyy="${1508868.875000*i_f}" iyz="${-0.026804*i_f}"
+                 izx="${107.669724*i_f}" izy="${-0.026804*i_f}" izz="${1508546.375000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="left_stick">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="left_stick_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="left_stick"/>
+      <axis xyz="0 0 1"/>
+        <origin xyz="0.01 0.033 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
+    </joint>
+
+    <link name="right_stick">
+      <visual>
+        <origin xyz="-0.034341 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.034341 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${59.337273*d_f} ${33.000000*d_f} ${5.024188*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${92894.125000*i_f}" ixy="${0.078319*i_f}" ixz="${107.686089*i_f}"
+                 iyx="${0.078319*i_f}" iyy="${1508869.375000*i_f}" iyz="${0.065572*i_f}"
+                 izx="${107.686089*i_f}" izy="${0.065572*i_f}" izz="${1508545.000000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="right_stick">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_stick_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="right_stick"/>
+      <axis xyz="0 0 1"/>
+        <origin xyz="0.034341 0.033 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="1" offset="0" />
+    </joint>
+
+    <link name="spacer">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Spacer.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Spacer.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${22.172432*d_f} ${31.563816*d_f} ${15.463399*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${181699.031250*i_f}" ixy="${-14.737192*i_f}" ixz="${-53.030239*i_f}"
+                 iyx="${-14.737192*i_f}" iyy="${547111.937500*i_f}" iyz="${547111.937500*i_f}"
+                 izx="${547111.937500*i_f}" izy="${547111.937500*i_f}" izz="${642384.000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="spacer">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="spacer_joint" type="fixed">
+      <parent link="base_bottom"/>
+      <child link="spacer"/>
+  <!--    <origin xyz="-0.094414  0 0.0"/>-->
+    </joint>
+
+    <link name="left_stick_top">
+      <visual>
+        <origin xyz="-0.01 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick_Top1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.01 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick_Top1.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${-15.003726*d_f + 0.01} ${33.000000*d_f - 0.033} ${5.024187*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${92893.898438*i_f}" ixy="${0.048491*i_f}" ixz="${107.669724*i_f}"
+                 iyx="${0.048491*i_f}" iyy="${1508868.875000*i_f}" iyz="${-0.026804*i_f}"
+                 izx="${107.669724*i_f}" izy="${-0.026804*i_f}" izz="${1508546.375000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="left_stick_top">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="left_stick_top_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="left_stick_top"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.01 0.033 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
+    </joint>
+
+    <link name="right_stick_top">
+      <visual>
+        <origin xyz="-0.034341 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick_Top2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.034341 -0.033 0.0"/>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/Stick_Top2.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <origin xyz="${59.337273*d_f} ${33.000000*d_f} ${5.024188*d_f}" rpy="0 0 0" />
+        <!--  divide by 10E-11     -->
+        <inertia ixx="${92894.125000*i_f}" ixy="${0.078319*i_f}" ixz="${107.686089*i_f}"
+                 iyx="${0.078319*i_f}" iyy="${1508869.375000*i_f}" iyz="${0.065572*i_f}"
+                 izx="${107.686089*i_f}" izy="${0.065572*i_f}" izz="${1508545.000000*i_f}" />
+      </inertial>
+    </link>
+
+    <gazebo reference="right_stick_top">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="right_stick_top_joint" type="revolute">
+      <parent link="base_bottom"/>
+      <child link="right_stick_top"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.034341 0.033 0.0"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <mimic joint="left_gear_joint" multiplier="1" offset="0" />
+    </joint>
+
+    <link name="base_top">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/BaseTopCamera.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/BaseTopCamera.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.00002265" />
+        <inertia ixx="0.00198528736" ixy="-0.00000264564125000" ixz="-0.00000829723937500"
+                 iyx="-0.00000264564125000" iyy="0.00093770280000000" iyz="0.00025834140000000"
+                 izx="-0.00000829723937500" izy="0.00025834140000000" izz="0.00252391792000000" />
+      </inertial>
+    </link>
+
+    <gazebo reference="base_top">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <joint name="base_top_joint" type="fixed">
+      <parent link="base_bottom"/>
+      <child link="base_top"/>
+      <origin xyz="0.0 0.0 0.0205" rpy="0.0 0.0 ${pi}"/>
+    </joint>
+
+    <joint name="gripper" type="fixed">
+      <origin xyz="0.00875 0.022171 0.0814375" rpy="${3.141/2.0} 0.0 ${-3.141/2.0}" />zzz
+      <parent link="tool0" />
+      <child link="base_bottom" />
+    </joint>
+  </xacro:macro>
+
+</robot>

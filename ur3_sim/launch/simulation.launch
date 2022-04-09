@@ -1,0 +1,14 @@
+<launch>
+  <!-- Launch gazebo simulation -->
+  <include file="$(find ur3_sim_gazebo)/launch/ur3_sim.launch"/>
+
+  <!-- Launch MoveIt!-->
+  <include file="$(find ur3_sim_moveit_config)/launch/ur3_sim_moveit_planning_execution.launch"/>
+
+  <!-- Launch RViz-->
+  <include file="$(find ur3_sim_moveit_config)/launch/moveit_rviz.launch"/>
+
+  <!-- Gripper -->
+  <node pkg="ur3_sim" type="gripper.py"  name="gripper_control" output="screen"/>
+
+</launch>
