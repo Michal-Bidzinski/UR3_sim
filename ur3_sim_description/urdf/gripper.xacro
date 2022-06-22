@@ -554,9 +554,28 @@
     </joint>
 
     <joint name="gripper" type="fixed">
-      <origin xyz="0.00875 0.022171 0.0814375" rpy="${3.141/2.0} 0.0 ${-3.141/2.0}" />zzz
+      <origin xyz="0.00875 0.022171 0.0814375" rpy="${3.141/2.0} 0.0 ${-3.141/2.0}" />
       <parent link="tool0" />
       <child link="base_bottom" />
+    </joint>
+
+    <link name="cable_block">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/CableBlock.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur3_sim_description/meshes/gripper/CableBlock.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="cable_block_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${3.141}" />
+      <parent link="base_bottom" />
+      <child link="cable_block" />
     </joint>
   </xacro:macro>
 

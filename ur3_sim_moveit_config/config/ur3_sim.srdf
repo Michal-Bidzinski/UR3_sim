@@ -153,6 +153,7 @@
     <disable_collisions link1="base_top" link2="left_stick_top" reason="Never"/>
     <disable_collisions link1="base_top" link2="right_stick_top" reason="Never"/>
     <disable_collisions link1="base_top" link2="spacer" reason="Never"/>
+    <disable_collisions link1="base_top" link2="cable_block" reason="Never"/>
 
     <disable_collisions link1="adapter" link2="wrist_3_link" reason="Never"/>
     <disable_collisions link1="adapter" link2="base_top" reason="Never"/>
