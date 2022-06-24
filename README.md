@@ -4,6 +4,9 @@ The repository contains a simulation of a UR3 robot, prepared for training befor
 
 The gripper used was taken from the [Printables website](https://www.printables.com/pl/model/165722-robotic-gripper?fbclid=IwAR14jhZnuyvgtlFUA-Fm_h8lI08LHBNPQ0fYph930b-ZGCJd9EBcdEk6IPQ).
 
+## UPDATE!!!
+A block has been added to the gripper in the place where the plugs are. This will avoid collisions with plugs.
+
 ## Install on the host system
 
 ### Requirements
