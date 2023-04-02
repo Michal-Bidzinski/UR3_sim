@@ -1,4 +1,4 @@
-# UR3 simulation - ERC 2022
+# UR3 simulation - ERC 2023
 
 The repository contains a simulation of a UR3 robot, prepared for training before the ERC 2022 competition. The simulation uses a UR3 arm model with a repository [ROS-Industrial Universal Robot repository] (https://github.com/ros-industrial/universal_robot). Cell model, IMU box, box with lid, buttons and a gripper with camera have been added. The gripper also uses a gazebo plugin to create mimic joints ([roboticsgroup_gazebo_plugins] (https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins)). The files necessary for motion planning have also been modified to take into account the added elements. All changed and added files are located in this repository.
 
@@ -23,7 +23,7 @@ sudo apt install ros-noetic-moveit -y
 sudo apt install ros-noetic-ros-controllers* -y
 mkdir -p /catkin_ws/src
 cd /catkin_ws/src
-git clone https://github.com/ros-industrial/universal_robot.git
+git clone -b kinetic-devel https://github.com/ros-industrial/universal_robot.git
 sudo rm -r universal_robot/ur_msgs
 git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins
 git clone https://github.com/Michal-Bidzinski/UR3_sim.git
