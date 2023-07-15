@@ -104,7 +104,7 @@
       <child link="left_gear"/>
       <axis xyz="0 0 -1"/>
       <origin xyz="0.0 0 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
     </joint>
 
     <link name="right_gear">
@@ -140,7 +140,7 @@
       <child link="right_gear"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.044341 0 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="1" offset="0" />
     </joint>
 
@@ -174,7 +174,7 @@
       <child link="right_arm_bottom"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.050137 0 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
     </joint>
 
@@ -208,7 +208,7 @@
       <child link="left_arm_bottom"/>
       <axis xyz="0 0 1"/>
       <origin xyz="-0.050137 0 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="1" offset="0" />
     </joint>
 
@@ -241,7 +241,7 @@
       <child link="right_arm_top"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.050137  0 0.0"/>
-     <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+     <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
     </joint>
 
@@ -274,7 +274,7 @@
       <child link="left_arm_top"/>
       <axis xyz="0 0 1"/>
       <origin xyz="-0.050137 0 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="1" offset="0" />
     </joint>
 
@@ -376,7 +376,7 @@
       <child link="left_stick"/>
       <axis xyz="0 0 1"/>
         <origin xyz="0.01 0.033 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
     </joint>
 
@@ -413,7 +413,7 @@
       <child link="right_stick"/>
       <axis xyz="0 0 1"/>
         <origin xyz="0.034341 0.033 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="1" offset="0" />
     </joint>
 
@@ -482,7 +482,7 @@
       <child link="left_stick_top"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.01 0.033 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="-1" offset="0" />
     </joint>
 
@@ -519,7 +519,7 @@
       <child link="right_stick_top"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.034341 0.033 0.0"/>
-      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <limit effort="1000.0" lower="-2.0" upper="2.0" velocity="1.5"/>
       <mimic joint="left_gear_joint" multiplier="1" offset="0" />
     </joint>
 
